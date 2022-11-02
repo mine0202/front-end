@@ -41,7 +41,7 @@ class DeptDataService {
     //  쿼리 스트링 방식 url :  ?변수명=값&변수명2=값2...
     // get 방식 통신 요청 -> @GetMapping("/api/dept") , 쿼리스트링이라서 @RequestParam  사용함 
     findByDname( dname){
-        return http.get(`/dept?dname=${dname}`);
+        return http.get(`/dept?dname=${dname}`); 
     }
 
 }

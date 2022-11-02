@@ -8,7 +8,6 @@ export default axios.create({
     baseURL: "http://localhost:8000/api",
     // 헤더 콘턴트 타입
     headers: {
-        "Content-type":"application/json"
+        "Content-Type":"application/json"
     }
 });
-

@@ -35,7 +35,6 @@
                 </div>
             </form>
 
-
             <button class="ms-1 mt-3 btn btn-danger" @click="deleteEmp">Delete
             </button>
 
@@ -68,15 +67,17 @@ export default {
         }
     },
     methods: {
-        // deleteEmp(dno) {
-        //     DeptDataService.delete(dno)
-        //         .then(response => {
-        //             console.log(response);
-        //         })
-        //         .catch(e => {
-        //             console.log(e);
-        //         })
-        // },
+
+        deleteEmp() {
+            EmpDataService.delete(this.currentEmp.eno)
+                .then(response => {
+                    console.log(response);
+                    this.$router.push("/emp");
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        },
 
         updateEmp() {
 
@@ -105,10 +106,10 @@ export default {
     },
     mounted(){
         // 디버깅
-        // alert(this.$route.params.dno);
-        // console.log(this.$route.params.dno);
+        // alert(this.$route.params.eno);
+        // console.log(this.$route.params.eno);
         this.message="";
-        //   this.$route.params.dno   : DeptList.vue 에서 dno 보낸것을  다음과 같이 받음
+        //   this.$route.params.dno   : EmpList.vue 에서 eno 보낸것을  다음과 같이 받음
         //    이전페이지에서 전송한 매개변수는 $route.params 안에 있음
         this.getEmp(this.$route.params.eno);
     }

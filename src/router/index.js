@@ -37,6 +37,24 @@ const routes = [
     path: '/emp/:eno',  //  : 을 이용하여 입력
     name: 'emp-detail',
     component: () => import( '../components/Emp/EmpDetail.vue')
+  },
+  {
+    // faq 목록 페이지
+    path: '/faq', 
+    name: 'faq',
+    component: () => import( '../components/Faq/FaqList.vue')
+  },
+  {
+    // faq 추가 페이지
+    path: '/add/faq', 
+    name: 'add-faq',
+    component: () => import( '../components/Faq/AddFaq.vue')
+  },
+  {
+    // faq 상세 목록 페이지
+    path: '/faq/:no',  //  : 을 이용하여 입력
+    name: 'faq-detail',
+    component: () => import( '../components/Faq/FaqDetail.vue')
   }
   
 ]

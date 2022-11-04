@@ -22,6 +22,8 @@
             <button type="submit" class="ms-3 mt-3 btn btn-success" @click="updateDept">
                 Update
             </button>
+
+            <router-link :to="'/dept'"><span class="ms-2 mt-3 btn btn-outline-secondary">DeptList page</span></router-link>
             <p>{{ message }}</p>
         </div>
         <!-- 수정 양식 끝 -->

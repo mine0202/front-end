@@ -1,11 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mp-3">
     <div class="container-fluid">
       <a class="navbar-brand" >SimpleDMS</a>
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <!-- 대메뉴 정의  -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav  ms-4">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,7 +21,7 @@
         </ul>
 
         <!-- 대 메뉴2 정의 -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav  ms-4">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,6 +32,22 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><router-link to="/emp" class="dropdown-item">Emp</router-link></li>
               <li><router-link to="/add/emp" class="dropdown-item">Add</router-link></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- 대 메뉴3 정의 -->
+        <ul class="navbar-nav  ms-4">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              FAQ Info
+            </a>
+
+            <!-- 소메뉴3 정의 -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><router-link to="/faq" class="dropdown-item">FAQ</router-link></li>
+              <li><router-link to="/add/faq" class="dropdown-item">Add</router-link></li>
             </ul>
           </li>
         </ul>

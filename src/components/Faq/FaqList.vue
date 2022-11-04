@@ -1,14 +1,12 @@
-<!--   < 누르면 기본폼 만들기 -->
-
 <template>
-  <!-- DeptList.vue -->
+  <!-- FaqList.vue -->
   <div class="list row">
     <!--  검색어 시작 -->
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by dname" v-model="dname" @keyup.enter="searchDname" />
+        <input type="text" class="form-control" placeholder="Search by title" v-model="title" @keyup.enter="searchTitle" />
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="searchDname">
+          <button class="btn btn-outline-secondary" type="button" @click="searchTitle">
             Search
           </button>
         </div>
@@ -18,15 +16,15 @@
 
     <!-- 전체 목록 조회 시작 -->
     <div class="col-md-6">
-      <h4 class="dept">Dept List</h4>
+      <h4 class="faq">FAQ List</h4>
       <ul class="list-group">
-        <li class="list-group-item list-group-item-action" :class="{ active: index == currentIndex }" v-for="(data, index) in dept"
-          :key="index" @click="setActiveDept(data, index)">
-          {{ data.dname }}
+        <li class="list-group-item list-group-item-action" :class="{ active: index == currentIndex }" v-for="(data, index) in faq"
+          :key="index" @click="setActiveFaq(data, index)">
+          {{ data.title }}
         </li>
       </ul>
 
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllDept">
+      <button class="m-3 btn btn-sm btn-danger" @click="removeAllFaq">
         Remove All
       </button>
     </div>
@@ -34,23 +32,23 @@
 
     <!-- 클릭하면 오른쪽 간략한 상세 목록 시작-->
     <div class="col-md-6">
-      <div v-if="currentDept">
-        <h4>Dept</h4>
+      <div v-if="currentFaq">
+        <h4>Faq</h4>
         <div>
-          <label><strong>Dno:</strong></label> {{ currentDept.dno }}
+          <label><strong>Dno:</strong></label> {{ currentFaq.no }}
         </div>
         <div>
-          <label><strong>Dname:</strong></label> {{ currentDept.dname }}
+          <label><strong>Title:</strong></label> {{ currentFaq.title }}
         </div>
         <div>
-          <label><strong>Loc:</strong></label> {{ currentDept.loc }}
+          <label><strong>Content:</strong></label> {{ currentFaq.content }}
         </div>
 
-        <router-link :to="'/dept/' + currentDept.dno"><span class="badge bg-success">Edit</span></router-link>
+        <router-link :to="'/faq/' + currentFaq.no"><span class="badge bg-success">Edit</span></router-link>
       </div>
       <div v-else>
         <br />
-        <p>Please click on a Dept...</p>
+        <p>Please click on a Faq...</p>
       </div>
     </div>
     <!-- 클릭 오른쪽 간략한 상세 목록 끝 -->
@@ -60,28 +58,28 @@
 
 <script>
 // axios 공통함수 불러오기
-import DeptDataService from '@/services/DeptDataService';
+import FaqDataService from '@/services/FaqDataService';
 
 
 export default {
   // 변수 정의하는 곳 : data(), 초기화
   data(){
     return{
-      dept:[],  // 스프링부트에서 오는 데이터 넣는 빈 배열
-      currentDept: null,  // 클릭했을때 들어갈 데이터 
+      faq:[],  // 스프링부트에서 오는 데이터 넣는 빈 배열
+      currentFaq: null,  // 클릭했을때 들어갈 데이터 
       currentIndex : -1,  
-      dname:""  //   속성 초기화
+      title:""  //   속성 초기화
     }
   },
   // 함수 정의하는 곳 : metods:
   methods:{
 
     // axios 부서명으로 like 검색 함수
-    searchDname(){
-      // dname 이 data 에 바인딩되어있으므로 this.dname 으로 불러옴
-      DeptDataService.findByDname(this.dname)
+    searchTitle(){
+      // title 이 data 에 바인딩되어있으므로 this.title 으로 불러옴
+      FaqDataService.findByTitle(this.title)
       .then(response=>{
-        this.dept = response.data; // like 검색결과를 변수에 저장
+        this.faq = response.data; // like 검색결과를 변수에 저장
         console.log(response.data)
       })
       .catch(e=>{
@@ -90,12 +88,12 @@ export default {
     },
 
 
-    // axios , 모든 부서정보 조회 요청 함수
-    retriebeDept(){
-      DeptDataService.getAll()
+    // axios , 모든 FAQ 정보 조회 요청 함수
+    retriebeFaq(){
+      FaqDataService.getAll()
     //  axios 성공하면  .then  결과전송됨
       .then(response=>{
-        this.dept= response.data; // springboot 의 전송된 부서정보
+        this.faq= response.data; // springboot 의 전송된 FAQ 정보
         // 디버깅 콘솔에 정보 출력
         console.log(response.data);
       })
@@ -106,21 +104,21 @@ export default {
       })
     },
     // 목록을 클릭했을때 현재 부서객체, 인덱스번호를 저장하는 함수
-    setActiveDept(data, index){
-      this.currentDept = data;
+    setActiveFaq(data, index){
+      this.currentFaq = data;
       this.currentIndex = index;
     },
-    // axios 모든 부서 정보 삭제 요청함수 
-    removeAllDept(){
-      DeptDataService.deleteAll()
+    // axios 모든 FAQ 정보 삭제 요청함수 
+    removeAllFaq(){
+      FaqDataService.deleteAll()
     //  axios 성공하면  .then  결과전송됨
       .then(response=>{
         // 디버깅 콘솔에 정보 출력
         console.log(response.data);
         // 전체 목록 재조회
-        this.retriebeDept();
-        // currentDept , currentIndex 초기화
-        this.currentDept = null;
+        this.retriebeFaq();
+        // currentFaq , currentIndex 초기화
+        this.currentFaq = null;
         this.currentIndex = -1;
         location.reload(true);
       })
@@ -132,7 +130,7 @@ export default {
   },
   // 화면이 뜨자마자 실행되는 이벤트, 라이프사이클 함수 - mounted(), created()
   mounted(){
-    this.retriebeDept(); // 화면이 뜨자마자 전체목록이 실행되면서 화면에 나옴
+    this.retriebeFaq(); // 화면이 뜨자마자 전체목록이 실행되면서 화면에 나옴
   }
 }
 </script>
@@ -143,8 +141,8 @@ export default {
   max-width: 750px;
   margin: auto;
 }
-.dept {
-  color: pink;
+.faq {
+  color: black;
   font-weight: bold;
 }
 </style>

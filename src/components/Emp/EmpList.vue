@@ -6,7 +6,7 @@
     <!--  검색어 시작 -->
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by ename" v-model="ename" @keyup.enter="searchEname"/>
+        <input type="text" class="form-control" placeholder="Search by ename" v-model="ename" />
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" @click="searchEname">
             Search
@@ -89,24 +89,6 @@ export default {
   },
   // 함수 정의하는 곳 : metods:
   methods:{
-
-    
-    // axios 부서명으로 like 검색 함수
-    searchEname(){
-      // 디버그
-      // alert(this.ename)
-      // dname 이 data 에 바인딩되어있으므로 this.dname 으로 불러옴
-      EmpDataService.findByEname(this.ename)
-      
-      .then(response=>{
-        this.emp = response.data; // like 검색결과를 변수에 저장
-        console.log(response.data)
-      })
-      .catch(e=>{
-        console.log(e)
-      })
-    },
-
     // axios , 모든 부서정보 조회 요청 함수
     retriebeEmp(){
       EmpDataService.getAll()

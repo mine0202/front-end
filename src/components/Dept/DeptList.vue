@@ -6,9 +6,13 @@
     <!-- 검색어 시작  -->
     <div class="col-md-8">
       <div class="input-group mb-3">
+<<<<<<< HEAD
         <!-- 검색어 입력  -->
         <input type="text" class="form-control" placeholder="Search by Dname" v-model="searchDname" @keyup.enter="searchDname" />
         <!-- 검색어 버튼  -->
+=======
+        <input type="text" class="form-control" placeholder="Search by dname" v-model="dname" />
+>>>>>>> parent of c207552 (13일차)
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" @click=" page = 1; retrieveDept(); ">
             Search
@@ -82,9 +86,6 @@
       <div v-if="currentDept">
         <h4>Dept</h4>
         <div>
-          <label><strong>Dno:</strong></label> {{ currentDept.dno }}
-        </div>
-        <div>
           <label><strong>Dname:</strong></label> {{ currentDept.dname }}
         </div>
         <div>
@@ -119,6 +120,7 @@ export default {
     }
   },
   // 함수 정의하는 곳 : metods:
+<<<<<<< HEAD
   methods: {
 
     // axios 부서명으로 like 검색 함수
@@ -135,6 +137,9 @@ export default {
     },
 
 
+=======
+  methods:{
+>>>>>>> parent of c207552 (13일차)
     // axios , 모든 부서정보 조회 요청 함수
     retriebeDept() {
       DeptDataService.getAll()
